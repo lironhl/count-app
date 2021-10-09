@@ -1,13 +1,13 @@
 start:
 	docker run -p 5432:5432 --name dev-postgres -e POSTGRES_PASSWORD=mysecretpassword -v postgres-vol:/var/lib/postgresql -d postgres:13-alpine &
-	poetry run uvicorn yashish.main:app --host 0.0.0.0 --reload
+	poetry run uvicorn counter_app.main:app --host 0.0.0.0 --reload
 
 stop:
 	docker stop dev-postgres &
 	docker rm dev-postgres
 
 prod:
-	poetry run uvicorn yashish.main:app --host 0.0.0.0
+	poetry run uvicorn counter_app.main:app --host 0.0.0.0
 
 format:
 	poetry run isort yashish alembic

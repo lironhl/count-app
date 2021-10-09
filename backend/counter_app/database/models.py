@@ -1,13 +1,9 @@
-from typing import List
+from sqlalchemy import DateTime, Integer, Column
 
-from sqlalchemy import Column, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.sql.sqltypes import Boolean, Date, Enum, Integer, String
+from counter_app.database import Base
 
-from yashish.database import Base
-
-class Interaction(Base):
-    __tablename__ = "interactions"
+class Count(Base):
+    __tablename__ = "counts"
 
     id = Column(Integer, primary_key=True, index=True)
-    date = Column(Date)
+    date = Column(DateTime)

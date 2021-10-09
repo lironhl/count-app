@@ -4,11 +4,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from yashish.database import Base, engine
-from yashish.routers import auth as auth_router
-from yashish.routers import interactions, seniors, users
-from yashish.utils.constants import COMMIT_SHA, ENV, ApiTags
-from yashish.utils.sentry import init_sentry
+from counter_app.database import Base, engine
+from counter_app.routers import count
+from counter_app.utils.constants import COMMIT_SHA, ENV, ApiTags
 
 Base.metadata.create_all(bind=engine)
 
@@ -23,12 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth_router.router, tags=[ApiTags.Auth])
-app.include_router(users.router, tags=[ApiTags.Users])
-app.include_router(seniors.router, tags=[ApiTags.Seniors])
-app.include_router(interactions.router, tags=[ApiTags.Interactions])
-
-init_sentry(app)
+app.include_router(count.router, tags=[ApiTags.Count])
 
 
 @app.get("/")

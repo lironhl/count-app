@@ -2,7 +2,7 @@
 name = "counter_app"
 version = "0.1.0"
 description = ""
-authors = ["liron.lavy@gmail.com"]
+authors = ["Liron Lavy <liron.lavy@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
